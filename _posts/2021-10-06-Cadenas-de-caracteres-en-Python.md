@@ -6,13 +6,25 @@ categories: [Blogging, Python]
 tags: [python, code, string]
 ---
 
+### Crear cadenas de caracteres
 
-### Cadenas de caracteres en Python
+Podemos crear una cadena de caracteres simplemente encerrando contenido entre comillas después de un signo de igual `=`
 
-Podemos crear una cadena de caracteres simplemente encerrando contenido entre comillas después de un signo de igual (`=`)
-
-    ```python
+```python
     
     mensaje = “Hola Mundo”
 
-    ```
+```
+
+### Concatenar cadenas
+
+Podemos concatenar cadenas con el operador `+`, recuerda que los espacios en blanco tienes que tenerlos en cuenta.
+
+```python
+    
+    mensaje = 'Hola' + ' ' + 'Mundo'
+    print(mensaje)
+    -> Hola Mundo
+```
+
+...to be continued
