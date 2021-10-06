@@ -11,42 +11,42 @@ tags: [Visual Basic, code, Macros]
 
 ```visualbasic
     
-    Sub juntarExcel()
-		Dim bookList As Workbook
-		Dim objeto As Object, directorio As Object, archivos As Object, archivo As Object
-		Application.ScreenUpdating = True
+Sub juntarExcel()
+	Dim bookList As Workbook
+	Dim objeto As Object, directorio As Object, archivos As Object, archivo As Object
+	Application.ScreenUpdating = True
 
-		Set objeto = CreateObject("Scripting.FileSystemObject")
-		Set directorio = objeto.Getfolder(PATH)
-		Set archivos = directorio.Files
+	Set objeto = CreateObject("Scripting.FileSystemObject")
+	Set directorio = objeto.Getfolder(PATH)
+	Set archivos = directorio.Files
 
-		For Each archivo In archivos
-		    Set bookList = Workbooks.Open(archivo)
+	For Each archivo In archivos
+	    Set bookList = Workbooks.Open(archivo)
 		    
-		    Debug.Print bookList.Name
+	    Debug.Print bookList.Name
 		    
-		    bookList.Worksheets(1).Activate
+	    bookList.Worksheets(1).Activate
 		        
-		    Lastrow = ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Row
-		    Lastcolumn = ActiveSheet.Cells(5, Columns.Count).End(xlToLeft).Column
+	    Lastrow = ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Row
+	    Lastcolumn = ActiveSheet.Cells(5, Columns.Count).End(xlToLeft).Column
 		    
-		    Debug.Print Lastrow
-		    Debug.Print Lastcolumn
+	    Debug.Print Lastrow
+	    Debug.Print Lastcolumn
 		    
-		    Range(Cells(6, 1), Cells(Lastrow, Lastcolumn)).Copy
+	    Range(Cells(6, 1), Cells(Lastrow, Lastcolumn)).Copy
 		   
 		   
-		    ThisWorkbook.Worksheets(1).Activate
+	    ThisWorkbook.Worksheets(1).Activate
 		    
-		    endrow = ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
+	    endrow = ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
 
-		    ActiveSheet.Paste Destination:=ActiveSheet.Range(Cells(endrow, 1), Cells(endrow, 5))
+	    ActiveSheet.Paste Destination:=ActiveSheet.Range(Cells(endrow, 1), Cells(endrow, 5))
 		    
 		    
-		    Application.CutCopyMode = False
-		    bookList.Close
-		Next
+	    Application.CutCopyMode = False
+	    bookList.Close
+	Next
 
-	End Sub
+End Sub
 
 ```
