@@ -12,7 +12,7 @@ Podemos crear una cadena de caracteres simplemente encerrando contenido entre co
 
 ```python
     
-    mensaje = “Hola Mundo”
+    mensaje = 'Hola Mundo'
 
 ```
 

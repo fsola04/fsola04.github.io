@@ -9,7 +9,7 @@ tags: [Visual Basic, code, Macros]
 ### Juntar varias hojas de Excel de archivos diferentes en una única hoja
 
 
-```vb
+```visualbasic
     
     Sub juntarExcel()
 		Dim bookList As Workbook
