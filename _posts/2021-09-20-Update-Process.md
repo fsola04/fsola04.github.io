@@ -1,5 +1,5 @@
 ---
-title: Cadenas de caracteres en Python
+title: Conectar a Base de datos con Python
 author: Francisco Sola
 date: 2021-09-20 00:35:00 -0
 categories: [Blogging, Python]
@@ -41,13 +41,13 @@ class Database:
 
     def select_data(self):
 
-        sql = 'SELECT * FROM table'
+        sql = 'SELECT * FROM process'
 
         try:
             self.cursor.execute(sql)
-            data = self.cursor.fetchall()
+            ticker = self.cursor.fetchall()
 
-            return data
+            return ticker
         except Exception as e:
             print("Error en función select_data " + e)
             raise
@@ -56,11 +56,11 @@ class Database:
             self.__disconnect__()
 
 
-    def update_table(self, campo1, campo):
+    def update_status_proces(self, status, idprocess):
 
-        sql = 'UPDATE `table` SET  `campo1`= %s WHERE `campo` = %s'
+        sql = 'UPDATE `process` SET  `status`= %s WHERE `idprocess` = %s'
         
-        values = (campo1, campo)
+        values = (status, idprocess)
         try:
             self.cursor.execute(sql, values)
             self.connection.commit()
@@ -68,7 +68,25 @@ class Database:
         except pymysql.IntegrityError as e:
             if not e[0] == 1062:
                 raise
-            print("Oops! Fallo al actualizar datos")
+            print("Oops! Fallo al insertar en la tabla process")
+        finally:
+
+            self.__disconnect__()
+    
+
+    def update_proces(self, idprocess, process_name, process_pid,  update_date, creation_date, status, pc):
+
+        sql = 'UPDATE `process` SET  `idprocess` = %s, `process_name`= %s, `process_pid`=%s, `update_date`= %s, `creation_date`= %s, `status`= %s, `pc`= %s WHERE `idprocess` = %s'
+        
+        values = (idprocess, process_name, process_pid, update_date, creation_date, status, pc, idprocess)
+        try:
+            self.cursor.execute(sql, values)
+            self.connection.commit()
+
+        except pymysql.IntegrityError as e:
+            if not e[0] == 1062:
+                raise
+            print("Oops! Fallo al insertar en la tabla process")
         finally:
 
             self.__disconnect__()
@@ -86,7 +104,7 @@ class Database:
     import DB
     
     
-    def update_proces(creation_date):
+    def update_process(creation_date):
 
     try:
         db = DB.Database()
@@ -98,10 +116,10 @@ class Database:
         status = True
         pc = socket.gethostname()
 
-        print('Actualizado: ', process_name, update_date, pc)
-
         db.update_proces(idprocess, process_name, process_pid,
                           update_date, creation_date, status, pc)
+
+        print('Actualizado: ', process_name, update_date, pc)
 
     except Exception as e:
         print('##### Error en función update_process ####', e)
