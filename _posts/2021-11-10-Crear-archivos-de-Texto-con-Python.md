@@ -8,7 +8,7 @@ tags: [python, code, files]
 
 ### Crear archivos de texto con Python
 
-Podemos crear una cadena de caracteres simplemente encerrando contenido entre comillas después de un signo de igual `=`
+Crear un archivo txt.
 
 ```python
     
