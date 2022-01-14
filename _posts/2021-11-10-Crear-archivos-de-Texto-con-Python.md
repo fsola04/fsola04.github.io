@@ -28,6 +28,16 @@ Crear un archivo html con encoding.
 
 ```
 
+### Crear archivos json con Python
+
+Crear un archivo json.
+
+```python
+    
+    with open("file.json", "w") as text_file:
+        json.dump(data, text_file)
+
+```
 
 
 ...to be continued
